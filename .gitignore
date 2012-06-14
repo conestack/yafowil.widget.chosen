@@ -1,0 +1,16 @@
+*#*
+*~
+.*
+!.gitignore
+
+*.pyc
+
+bin
+develop-eggs
+devsrc
+downloads
+eggs
+parts
+src/packages
+var
+src/yafowil.widget.wysihtml5.egg-info/
