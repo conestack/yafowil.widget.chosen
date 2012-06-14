@@ -30,4 +30,5 @@ factory.doc['blueprint']['multiselect'] = \
 factory.defaults['multiselect.default'] = ''
 factory.defaults['multiselect.readonly'] = None
 factory.defaults['multiselect.multivalued'] = True
+factory.defaults['multiselect.format'] = 'block'
 factory.defaults['multiselect.class'] = 'multiselect'
