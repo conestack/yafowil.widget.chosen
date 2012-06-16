@@ -40,7 +40,8 @@ position property.
 factory.doc['props']['multiselect.vocabulary'] = """\
 Vocabulary to be used for the selection list. Expects a dict-like or an
 iterable or a callable which returns one of both first. An iterable can consist
-out of strings or out of tuples with ``(key, value)``.
+out of unicode objects or out of tuples with ``(key, value)``. Use unicode
+instead of strings.
 """
 
 factory.doc['props']['multiselect.disabled'] = """\
