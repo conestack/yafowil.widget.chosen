@@ -41,9 +41,6 @@ setup(name='yafowil.widget.multiselect',
       entry_points="""
       [yafowil.plugin]
       register = yafowil.widget.multiselect:register
-      resourcedir = yafowil.widget.multiselect:get_resource_dir
-      javascripts = yafowil.widget.multiselect:get_js
-      stylesheets = yafowil.widget.multiselect:get_css
       example = yafowil.widget.multiselect.example:get_example
       """,
       )
