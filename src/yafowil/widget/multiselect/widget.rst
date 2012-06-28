@@ -1,11 +1,11 @@
 multiselect widget
-================
+==================
 
 Features
 --------
 
-    - renders textarea with multiselect css class and provides a multiselect
-      resources.
+- renders textarea with multiselect css class and provides a multiselect
+  resources.
 
 Load requirements::
 
@@ -18,44 +18,42 @@ Test widget::
 
 Render widget::
 
-    >>> widget = factory('multiselect', 'rt', props={'required': True})
+    >>> widget = factory('multiselect', 'multi', props={'required': True})
     >>> widget()
-    u'<textarea class="multiselect" cols="80" id="input-rt" name="rt" required="required" rows="10"></textarea>'
+    u'<input id="exists-multi" name="multi-exists" type="hidden" 
+    value="exists" /><select class="multiselect" id="input-multi" 
+    multiple="multiple" name="multi" required="required" />'
 
 Widget extraction::
 
-    >>> request = {'rt': ''}
+    >>> request = {'multi': []}
     >>> data = widget.extract(request)
-
-No input was given::
 
     >>> data.errors
     [ExtractionError('Mandatory field was empty',)]
 
-Empty string in extracted::
-
     >>> data.extracted
-    ''
+    []
 
-Widget extraction. Returns markup from tinymce::
-
-    >>> request = {'rt': '<p>1</p>'}
+    >>> request = {'multi': ['1']}
     >>> data = widget.extract(request)
     >>> data.errors
     []
 
     >>> data.extracted
-    '<p>1</p>'
-
-    >>> widget(data)
-    u'<textarea class="multiselect" cols="80" id="input-rt" name="rt" required="required" rows="10"><p>1</p></textarea>'
+    ['1']
 
 Display renderer::
 
-    >>> widget = factory('multiselect', 'rt', value='<p>foo</p>', mode='display')
+    >>> widget = factory('multiselect',
+    ...                  'multi',
+    ...                  value=['foo', 'bar'],
+    ...                  props={'vocabulary': [('foo', 'Foo'), ('bar', 'Bar')]},
+    ...                  mode='display')
     >>> widget()
-    u'<div class="display-multiselect"><p>foo</p></div>'
+    u'<ul class="display-multiselect" 
+    id="display-multi"><li>Foo</li><li>Bar</li></ul>'
 
-    >>> widget = factory('multiselect', 'rt', mode='display')
+    >>> widget = factory('multiselect', 'multi', mode='display')
     >>> widget()
-    u'<div class="display-multiselect"></div>'
+    u'<div class="display-multiselect" id="display-multi"></div>'
