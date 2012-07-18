@@ -2,25 +2,26 @@ import os
 from yafowil.base import factory
 
 
+# XXX: use fanstatic
 resourcedir = os.path.join(os.path.dirname(__file__), 'resources')
 
 js = [{
+    'group': 'multiselect',
     'resource': 'multi-select/js/jquery.multi-select.js',
-    'thirdparty': False,
     'order': 20,
 }, {
+    'group': 'yafowil.widget.multiselect',
     'resource': 'widget.js',
-    'thirdparty': False,
     'order': 21,
 }]
 
 css = [{
+    'group': 'multiselect',
     'resource': 'multi-select/css/multi-select.css',
-    'thirdparty': False,
     'order': 20,
 }, {
+    'group': 'yafowil.widget.multiselect',
     'resource': 'widget.css',
-    'thirdparty': False,
     'order': 21,
 }]
 
