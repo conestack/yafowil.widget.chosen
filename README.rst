@@ -17,4 +17,4 @@ We'd be happy to see many forks and pull-requests to make YAFOWIL even better.
 Contributors
 ============
 
-- Johannes Raggam <johannes@raggam.co.at>
+- Johannes Raggam <johannes [at] raggam [dot] co [dot] at>
