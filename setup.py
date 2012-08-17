@@ -31,7 +31,7 @@ setup(name='yafowil.widget.multiselect',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'yafowil>=2.0',
+          'yafowil>1.99',
       ],
       tests_require=tests_require,
       extras_require = dict(
