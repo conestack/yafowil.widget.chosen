@@ -2,9 +2,7 @@ import os
 from yafowil.base import factory
 
 
-# XXX: use fanstatic
 resourcedir = os.path.join(os.path.dirname(__file__), 'resources')
-
 js = [{
     'group': 'multiselect',
     'resource': 'multi-select/js/jquery.multi-select.js',
@@ -14,7 +12,6 @@ js = [{
     'resource': 'widget.js',
     'order': 21,
 }]
-
 css = [{
     'group': 'multiselect',
     'resource': 'multi-select/css/multi-select.css',
