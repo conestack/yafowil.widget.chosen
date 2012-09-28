@@ -1,13 +1,35 @@
 # -*- coding: utf-8 -*-
-
 from yafowil.base import factory
 
-def get_example():
-    part = factory(u'fieldset', name='yafowilwidgetmultiselect')
-    part['text'] = factory('field:label:error:multiselect', props={
-        'label': 'Enter some text (local, lorem ipsum)',
+
+DOC_MULTISELECT = """
+Multiselect
+-----------
+
+Multiselect Widget using jQuery multiselect plugin.
+
+.. code-block:: python
+
+    multiselect = factory('#field:multiselect', props={
+        'label': 'Select some items',
         'required': 'Selection is required',
         'vocabulary': sorted((u'Weißburgunder', u'Welschriesling',
                               u'Sauvingnon Blanc', u'Sämling', u'Scheurebe',
                               u'Traminer', u'Morrilon', u'Muskateller'))})
-    return [{'widget': part, 'doc': 'TODO'}]
+"""
+
+def multiselect():
+    part = factory(u'fieldset', name='yafowilwidgetmultiselect')
+    part['text'] = factory('#field:multiselect', props={
+        'label': 'Select some items',
+        'required': 'Selection is required',
+        'vocabulary': sorted((u'Weißburgunder', u'Welschriesling',
+                              u'Sauvingnon Blanc', u'Sämling', u'Scheurebe',
+                              u'Traminer', u'Morrilon', u'Muskateller'))})
+    return {'widget': part,
+            'doc': DOC_MULTISELECT,
+            'title': 'Multiselect Widget'}
+
+
+def get_example():
+    return [multiselect()]
