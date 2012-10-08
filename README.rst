@@ -1,8 +1,11 @@
 
-This is a multiselect for `yafowil <http://pypi.python.org/pypi/yafowil>`_ 
+This is a multiselect for `yafowil <http://pypi.python.org/pypi/yafowil>`_
 
 It is based on the jQuery `multi-select https://github.com/lou/multi-select`_
 plugin.
+
+- `DEMO - see it Live <http://demo.yafowil.info/++widget++yafowil.widget.autocomplete/index.html>`_
+- `Documentation <http://yafowil.info/yafowil/blueprints.html#autocomplete>`_
 
 
 Source Code
