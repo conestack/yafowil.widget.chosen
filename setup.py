@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.0dev'
+version = '1.0'
 shortdesc = 'multiselect widget for YAFOWIL'
 longdesc = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
 longdesc += open(os.path.join(os.path.dirname(__file__), 'HISTORY.rst')).read()
@@ -22,7 +22,7 @@ setup(name='yafowil.widget.multiselect',
       keywords='',
       author='BlueDynamics Alliance',
       author_email='dev@bluedynamics.com',
-      url=u'https://github.com/bluedynamics/yafowil.widget.multiselect',
+      url=u'http://pypi.python.org/pypi/yafowil.widget.multiselect',
       license='Simplified BSD',
       packages=find_packages('src'),
       package_dir = {'': 'src'},

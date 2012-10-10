@@ -4,7 +4,7 @@ This is a multiselect for `yafowil <http://pypi.python.org/pypi/yafowil>`_
 It is based on the jQuery `multi-select https://github.com/lou/multi-select`_
 plugin.
 
-- `Documentation <http://docs.yafowil.info/yafowil/blueprints.html#multiselect>`_
+- `Documentation <http://docs.yafowil.info/en/latest/blueprints.html#multiselect>`_
 - `DEMO - see it Live <http://demo.yafowil.info/++widget++yafowil.widget.multiselect/index.html>`_
 
 
