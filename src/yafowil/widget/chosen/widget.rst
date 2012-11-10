@@ -1,16 +1,15 @@
-multiselect widget
+chosen widget
 ==================
 
 Features
 --------
 
-- renders textarea with multiselect css class and provides a multiselect
-  resources.
+- renders select box with chosen css class and provides chosen resources.
 
 Load requirements::
 
     >>> import yafowil.loader
-    >>> import yafowil.widget.multiselect
+    >>> import yafowil.widget.chosen
 
 Test widget::
 
@@ -18,10 +17,10 @@ Test widget::
 
 Render widget::
 
-    >>> widget = factory('multiselect', 'multi', props={'required': True})
+    >>> widget = factory('chosen', 'multi', props={'required': True})
     >>> widget()
     u'<input id="exists-multi" name="multi-exists" type="hidden" 
-    value="exists" /><select class="multiselect" id="input-multi" 
+    value="exists" /><select class="chosen" id="input-multi" 
     multiple="multiple" name="multi" required="required" />'
 
 Widget extraction::
@@ -45,15 +44,15 @@ Widget extraction::
 
 Display renderer::
 
-    >>> widget = factory('multiselect',
+    >>> widget = factory('chosen',
     ...                  'multi',
     ...                  value=['foo', 'bar'],
     ...                  props={'vocabulary': [('foo', 'Foo'), ('bar', 'Bar')]},
     ...                  mode='display')
     >>> widget()
-    u'<ul class="display-multiselect" 
+    u'<ul class="display-chosen" 
     id="display-multi"><li>Foo</li><li>Bar</li></ul>'
 
-    >>> widget = factory('multiselect', 'multi', mode='display')
+    >>> widget = factory('chosen', 'multi', mode='display')
     >>> widget()
-    u'<div class="display-multiselect" id="display-multi"></div>'
+    u'<div class="display-chosen" id="display-multi"></div>'

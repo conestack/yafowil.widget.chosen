@@ -2,15 +2,15 @@
 from yafowil.base import factory
 
 
-DOC_MULTISELECT = """
-Multiselect
------------
+DOC_CHOSEN = """
+chosen
+------
 
-Multiselect Widget using jQuery multiselect plugin.
+chosen Widget using jQuery chosen plugin.
 
 .. code-block:: python
 
-    multiselect = factory('#field:multiselect', props={
+    chosen = factory('#field:chosen', props={
         'label': 'Select some items',
         'required': 'Selection is required',
         'vocabulary': sorted((u'Weißburgunder', u'Welschriesling',
@@ -18,18 +18,18 @@ Multiselect Widget using jQuery multiselect plugin.
                               u'Traminer', u'Morrilon', u'Muskateller'))})
 """
 
-def multiselect():
-    part = factory(u'fieldset', name='yafowilwidgetmultiselect')
-    part['text'] = factory('#field:multiselect', props={
+def chosen():
+    part = factory(u'fieldset', name='yafowilwidgetchosen')
+    part['text'] = factory('#field:chosen', props={
         'label': 'Select some items',
         'required': 'Selection is required',
         'vocabulary': sorted((u'Weißburgunder', u'Welschriesling',
                               u'Sauvingnon Blanc', u'Sämling', u'Scheurebe',
                               u'Traminer', u'Morrilon', u'Muskateller'))})
     return {'widget': part,
-            'doc': DOC_MULTISELECT,
-            'title': 'Multiselect Widget'}
+            'doc': DOC_CHOSEN,
+            'title': 'chosen Widget'}
 
 
 def get_example():
-    return [multiselect()]
+    return [chosen()]

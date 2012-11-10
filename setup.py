@@ -6,14 +6,14 @@ from setuptools import (
 
 
 version = '1.0'
-shortdesc = 'multiselect widget for YAFOWIL'
+shortdesc = 'Chosen autocomplete/select box widget for YAFOWIL'
 longdesc = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
 longdesc += open(os.path.join(os.path.dirname(__file__), 'HISTORY.rst')).read()
 longdesc += open(os.path.join(os.path.dirname(__file__), 'LICENSE.rst')).read()
 tests_require = ['yafowil[test]']
 
 
-setup(name='yafowil.widget.multiselect',
+setup(name='yafowil.widget.chosen',
       version=version,
       description=shortdesc,
       long_description=longdesc,
@@ -27,7 +27,7 @@ setup(name='yafowil.widget.multiselect',
       keywords='',
       author='BlueDynamics Alliance',
       author_email='dev@bluedynamics.com',
-      url=u'http://pypi.python.org/pypi/yafowil.widget.multiselect',
+      url=u'http://pypi.python.org/pypi/yafowil.widget.chosen',
       license='Simplified BSD',
       packages=find_packages('src'),
       package_dir = {'': 'src'},
@@ -42,9 +42,9 @@ setup(name='yafowil.widget.multiselect',
       extras_require = dict(
           test=tests_require,
       ),
-      test_suite="yafowil.widget.multiselect.tests.test_suite",
+      test_suite="yafowil.widget.chosen.tests.test_suite",
       entry_points="""
       [yafowil.plugin]
-      register = yafowil.widget.multiselect:register
-      example = yafowil.widget.multiselect.example:get_example
+      register = yafowil.widget.chosen:register
+      example = yafowil.widget.chosen.example:get_example
       """)

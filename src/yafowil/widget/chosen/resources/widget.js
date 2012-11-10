@@ -1,5 +1,5 @@
 /*
- * yafowil multiselect widget
+ * yafowil chosen widget
  *
  * Optional: bdajax
  */
@@ -10,27 +10,27 @@ if (typeof(window['yafowil']) == "undefined") yafowil = {};
 
     $(document).ready(function() {
         // initial binding
-        yafowil.multiselect.binder();
+        yafowil.chosen.binder();
 
         // add after ajax binding if bdajax present
         if (typeof(window['bdajax']) != "undefined") {
             $.extend(bdajax.binders, {
-                multiselect_binder: yafowil.multiselect.binder
+                chosen_binder: yafowil.chosen.binder
             });
         }
     });
 
     $.extend(yafowil, {
 
-        multiselect: {
+        chosen: {
 
             binder: function(context) {
 
-                $('select.multiselect', context).each(function(event) {
+                $('select.chosen', context).each(function(event) {
 
                     var id = $(this).attr('id');
                     var element = $('#' + id);
-                    element.multiSelect();
+                    element.chosen();
 
                 });
 
