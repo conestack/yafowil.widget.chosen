@@ -14,7 +14,7 @@ js = [{
 }]
 css = [{
     'group': 'yafowil.widget.chosen.dependencies',
-    'resource': 'multi-select/chosen/chosen.css',
+    'resource': 'chosen/chosen/chosen.css',
     'order': 20,
 }, {
     'group': 'yafowil.widget.chosen.common',

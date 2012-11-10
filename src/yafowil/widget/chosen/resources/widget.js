@@ -30,7 +30,7 @@ if (typeof(window['yafowil']) == "undefined") yafowil = {};
 
                     var id = $(this).attr('id');
                     var element = $('#' + id);
-                    element.chosen();
+                    element.chosen({search_contains:true});
 
                 });
 

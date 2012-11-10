@@ -1,7 +1,7 @@
 
 This is a chosen for `yafowil <http://pypi.python.org/pypi/yafowil>`_
 
-It is based on the jQuery `multi-select https://github.com/lou/multi-select`_
+It is based on the jQuery `chosen https://github.com/harvesthq/chosen`_
 plugin.
 
 - `Documentation <http://docs.yafowil.info/en/latest/blueprints.html#chosen>`_

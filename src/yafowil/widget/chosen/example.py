@@ -6,7 +6,7 @@ DOC_CHOSEN = """
 chosen
 ------
 
-chosen Widget using jQuery chosen plugin.
+Chosen Widget using jQuery Chosen plugin.
 
 .. code-block:: python
 
