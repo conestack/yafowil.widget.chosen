@@ -14,7 +14,7 @@ factory.register(
     display_renderers=[select_display_renderer])
 
 factory.doc['blueprint']['chosen'] = \
-""Add-on blueprint `yafowil.widget.chosen
+"""Add-on blueprint `yafowil.widget.chosen
 <http://github.com/bluedynamics/yafowil.widget.chosen/>`_ .
 """
 
