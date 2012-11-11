@@ -32,6 +32,18 @@ if (typeof(window['yafowil']) == "undefined") yafowil = {};
                     var element = $('#' + id);
                     element.chosen({search_contains:true});
 
+                    $(document).on('change','.search-field input',function(e){
+                        // allow new values
+                        // see http://harvesthq.github.com/chosen/
+                        // http://stackoverflow.com/questions/7385246/allow-new-values-with-chosen-js-multiple-select
+                        //
+                        // TODO: try/test to bind also on keyup/enter
+                        e.preventDefault();
+                        ele = $(e.target);
+                        sel = ele.closest('div.controls').find('select.chosen'); // TODO: can't this be simpler? getting "this" context from surrounding environment?
+                        sel.append('<option selected="selected">' + ele.val() + '</option>');
+                        sel.trigger('liszt:updated');
+                    });
                 });
 
             }
