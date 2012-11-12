@@ -31,9 +31,15 @@ def chosen_edit_wrapper_renderer(widget, data):
         'single_backstroke_delete',
         'max_selected_options',
     ]
-    wrapper_attrs = dict([('data-%s' % key, widget.attrs[key])
-                           for key in chosen_options
-                           if widget.attrs[key] is not None])
+
+    wrapper_attrs = {}
+    for key in chosen_options:
+        val = widget.attrs[key]
+        if val is None: continue
+        if val is True: val = 'true' # js-ify
+        if val is False: val = 'false' # js-ify
+        wrapper_attrs[key] = val
+
     wrapper_attrs['class'] = 'chosen-edit-wrapper'
 
     # return element (data.rendered) wrapped with chosen_edit_wrapper_renderer
@@ -60,7 +66,7 @@ factory.defaults['chosen.format'] = 'block'
 factory.defaults['chosen.class'] = 'chosen'
 
 # TODO : docs
-factory.defaults['chosen.new_values'] = 'true';
+factory.defaults['chosen.new_values'] = True;
 factory.defaults['chosen.click_test_action'] = None;
 factory.defaults['chosen.activate_action'] = None;
 factory.defaults['chosen.mouse_on_container'] = None;
@@ -70,7 +76,7 @@ factory.defaults['chosen.result_single_selected'] = None;
 factory.defaults['chosen.allow_single_deselect'] = None;
 factory.defaults['chosen.disable_search_threshold'] = None;
 factory.defaults['chosen.disable_search'] = None;
-factory.defaults['chosen.search_contains'] = 'true';
+factory.defaults['chosen.search_contains'] = True;
 factory.defaults['chosen.choices'] = None;
 factory.defaults['chosen.single_backstroke_delete'] = None;
 factory.defaults['chosen.max_selected_options'] = None;
