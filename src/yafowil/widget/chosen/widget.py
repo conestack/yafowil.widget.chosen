@@ -1,17 +1,51 @@
-from yafowil.base import factory
+from yafowil.base import (
+    factory,
+)
 from yafowil.common import (
     select_extractor,
     generic_required_extractor,
     select_edit_renderer,
     select_display_renderer,
 )
+from yafowil.utils import (
+    managedprops,
+)
+
+
+@managedprops('search_contains', 'new_values')
+def chosen_edit_wrapper_renderer(widget, data):
+    # add options
+    chosen_options = [
+        'new_values',
+        'click_test_action',
+        'activate_action',
+        'mouse_on_container',
+        'results_showing',
+        'result_highlighted',
+        'result_single_selected',
+        'allow_single_deselect',
+        'disable_search_threshold',
+        'disable_search',
+        'search_contains',
+        'choices',
+        'single_backstroke_delete',
+        'max_selected_options',
+    ]
+    wrapper_attrs = dict([('data-%s' % key, widget.attrs[key])
+                           for key in chosen_options
+                           if widget.attrs[key] is not None])
+    wrapper_attrs['class'] = 'chosen-edit-wrapper'
+
+    # return element (data.rendered) wrapped with chosen_edit_wrapper_renderer
+    return data.tag('div', data.rendered, **wrapper_attrs)
 
 
 factory.register(
     'chosen',
     extractors=[select_extractor, generic_required_extractor],
-    edit_renderers=[select_edit_renderer],
+    edit_renderers=[select_edit_renderer, chosen_edit_wrapper_renderer],
     display_renderers=[select_display_renderer])
+
 
 factory.doc['blueprint']['chosen'] = \
 """Add-on blueprint `yafowil.widget.chosen
@@ -25,39 +59,18 @@ factory.defaults['chosen.default'] = []
 factory.defaults['chosen.format'] = 'block'
 factory.defaults['chosen.class'] = 'chosen'
 
-# I don't know yet how to propagate them to chosen.
-factory.defaults['chosen.api_click_test_action'] = None;
-factory.defaults['chosen.api_activate_action'] = None;
-factory.defaults['chosen.api_mouse_on_container'] = None;
-factory.defaults['chosen.api_results_showing'] = None;
-factory.defaults['chosen.api_result_highlighted'] = None;
-factory.defaults['chosen.api_result_single_selected'] = None;
-factory.defaults['chosen.api_allow_single_deselect'] = None;
-factory.defaults['chosen.api_disable_search_threshold'] = None;
-factory.defaults['chosen.api_disable_search'] = None;
-factory.defaults['chosen.api_search_contains'] = None;
-factory.defaults['chosen.api_choices'] = None;
-factory.defaults['chosen.api_single_backstroke_delete'] = None;
-factory.defaults['chosen.api_max_selected_options'] = None;
-
-"""
-    from abstract-chosen.coffee
-    ---------------------------
-
-  set_default_values: ->
-    @click_test_action = (evt) => this.test_active_click(evt)
-    @activate_action = (evt) => this.activate_field(evt)
-    @active_field = false
-    @mouse_on_container = false
-    @results_showing = false
-    @result_highlighted = null
-    @result_single_selected = null
-    @allow_single_deselect = if @options.allow_single_deselect? and @form_field.options[0]? and @form_field.options[0].text is "" then @options.allow_single_deselect else false
-    @disable_search_threshold = @options.disable_search_threshold || 0
-    @disable_search = @options.disable_search || false
-    @search_contains = @options.search_contains || false
-    @choices = 0
-    @single_backstroke_delete = @options.single_backstroke_delete || false
-    @max_selected_options = @options.max_selected_options || Infinity
-
-"""
+# TODO : docs
+factory.defaults['chosen.new_values'] = 'true';
+factory.defaults['chosen.click_test_action'] = None;
+factory.defaults['chosen.activate_action'] = None;
+factory.defaults['chosen.mouse_on_container'] = None;
+factory.defaults['chosen.results_showing'] = None;
+factory.defaults['chosen.result_highlighted'] = None;
+factory.defaults['chosen.result_single_selected'] = None;
+factory.defaults['chosen.allow_single_deselect'] = None;
+factory.defaults['chosen.disable_search_threshold'] = None;
+factory.defaults['chosen.disable_search'] = None;
+factory.defaults['chosen.search_contains'] = 'true';
+factory.defaults['chosen.choices'] = None;
+factory.defaults['chosen.single_backstroke_delete'] = None;
+factory.defaults['chosen.max_selected_options'] = None;
