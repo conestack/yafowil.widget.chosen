@@ -33,6 +33,8 @@ if (typeof(window['yafowil']) == "undefined") yafowil = {};
 
                     var option_el = $(this).closest('div.chosen-edit-wrapper');
                     var options = option_el.data();
+
+                    // cleanup api options object and move out extra options
                     var options_extra = {};
                     options_extra.new_values = options.new_values;
                     delete options.new_values;
