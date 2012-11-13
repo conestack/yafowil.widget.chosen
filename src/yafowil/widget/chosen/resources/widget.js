@@ -56,6 +56,14 @@ if (typeof(window['yafowil']) == "undefined") yafowil = {};
                             sel = ele.closest('div.controls').find('select.chosen'); // TODO: can't this be simpler? getting "this" context from surrounding environment?
                             sel.append('<option selected="selected">' + ele.val() + '</option>');
                             sel.trigger('liszt:updated');
+
+                            // TODO: doesn't work
+                            // focus search-field
+                            //tryout1
+                            //ele.focus();
+                            //tryout2
+                            // rebuilt - so have to find search field again.
+                            //sel.closest('div.controls').find('.czn-container .search-field input').focus();
                         });
                     }
 
