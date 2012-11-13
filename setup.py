@@ -4,9 +4,8 @@ from setuptools import (
     find_packages,
 )
 
-
-version = '1.0'
-shortdesc = 'Chosen autocomplete/select box widget for YAFOWIL'
+version = '1.0dev'
+shortdesc = 'Chosen select/autocomplete widget for YAFOWIL'
 longdesc = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
 longdesc += open(os.path.join(os.path.dirname(__file__), 'HISTORY.rst')).read()
 longdesc += open(os.path.join(os.path.dirname(__file__), 'LICENSE.rst')).read()
@@ -27,7 +26,7 @@ setup(name='yafowil.widget.chosen',
       keywords='',
       author='BlueDynamics Alliance',
       author_email='dev@bluedynamics.com',
-      url=u'http://pypi.python.org/pypi/yafowil.widget.chosen',
+      url=u'https://github.com/bluedynamics/yafowil.widget.chosen',
       license='Simplified BSD',
       packages=find_packages('src'),
       package_dir = {'': 'src'},

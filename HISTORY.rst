@@ -1,9 +1,8 @@
-
 History
 =======
 
-1.0
----
+1.0dev (unreleased)
+-------------------
 
-- make it work
-  [thet, 2012-06-14]
+- Make it work.
+  [thet]

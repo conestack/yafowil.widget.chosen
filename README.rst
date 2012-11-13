@@ -1,8 +1,9 @@
+yafowil.widget.chosen
+=====================
 
-This is a chosen for `yafowil <http://pypi.python.org/pypi/yafowil>`_
-
-It is based on the jQuery `chosen https://github.com/harvesthq/chosen`_
-plugin.
+This is the chosen widget for `yafowil <http://pypi.python.org/pypi/yafowil>`_,
+based on the `chosen https://github.com/harvesthq/chosen`_ from the `Harvest
+timetracker project http://www.getharvest.com/`_.
 
 - `Documentation <http://docs.yafowil.info/en/latest/blueprints.html#chosen>`_
 - `DEMO - see it Live <http://demo.yafowil.info/++widget++yafowil.widget.chosen/index.html>`_
