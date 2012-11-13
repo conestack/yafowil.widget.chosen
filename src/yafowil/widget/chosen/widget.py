@@ -38,7 +38,7 @@ def chosen_edit_wrapper_renderer(widget, data):
         if val is None: continue
         if val is True: val = 'true' # js-ify
         if val is False: val = 'false' # js-ify
-        wrapper_attrs[key] = val
+        wrapper_attrs['data-%s' % key] = val
 
     wrapper_attrs['class'] = 'chosen-edit-wrapper'
 
@@ -59,14 +59,14 @@ factory.doc['blueprint']['chosen'] = \
 """
 
 
-factory.defaults['chosen.multivalued'] = True
+factory.defaults['chosen.multivalued'] = False
 factory.defaults['chosen.size'] = None
 factory.defaults['chosen.default'] = []
 factory.defaults['chosen.format'] = 'block'
 factory.defaults['chosen.class'] = 'chosen'
 
 # TODO : docs
-factory.defaults['chosen.new_values'] = True;
+factory.defaults['chosen.new_values'] = None;
 factory.defaults['chosen.click_test_action'] = None;
 factory.defaults['chosen.activate_action'] = None;
 factory.defaults['chosen.mouse_on_container'] = None;
@@ -76,7 +76,7 @@ factory.defaults['chosen.result_single_selected'] = None;
 factory.defaults['chosen.allow_single_deselect'] = None;
 factory.defaults['chosen.disable_search_threshold'] = None;
 factory.defaults['chosen.disable_search'] = None;
-factory.defaults['chosen.search_contains'] = True;
+factory.defaults['chosen.search_contains'] = None;
 factory.defaults['chosen.choices'] = None;
 factory.defaults['chosen.single_backstroke_delete'] = None;
 factory.defaults['chosen.max_selected_options'] = None;
