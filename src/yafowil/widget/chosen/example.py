@@ -92,11 +92,11 @@ def get_example():
 
     return [{'widget': chosen_single,
              'doc': DOC_CHOSEN_SINGLE,
-             'title': 'Chosen Single Selection'},
+             'title': 'Single Selection'},
             {'widget': chosen_multi,
              'doc': DOC_CHOSEN_MULTI,
-             'title': 'Chosen Multi Selection'},
+             'title': 'Multi Selection'},
             {'widget': chosen_multi2,
              'doc': DOC_CHOSEN_MULTI_2,
-             'title': 'Chosen Multi Selection, New Values, Search Substrings'},
+             'title': 'Multi Selection, New Values, Search Substrings'},
            ]
