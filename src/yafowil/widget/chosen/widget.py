@@ -9,6 +9,7 @@ from yafowil.common import (
 )
 from yafowil.utils import (
     managedprops,
+    attr_value
 )
 
 
@@ -34,7 +35,7 @@ def chosen_edit_wrapper_renderer(widget, data):
 
     wrapper_attrs = {}
     for key in chosen_options:
-        val = widget.attrs[key]
+        val = attr_value(key, widget, data)
         if val is None: continue
         if val is True: val = 'true' # js-ify
         if val is False: val = 'false' # js-ify
