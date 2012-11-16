@@ -18,19 +18,14 @@ def chosen_edit_wrapper_renderer(widget, data):
     # add options
     chosen_options = [
         'new_values',
-        'click_test_action',
-        'activate_action',
-        'mouse_on_container',
-        'results_showing',
-        'result_highlighted',
-        'result_single_selected',
         'allow_single_deselect',
         'disable_search_threshold',
         'disable_search',
         'search_contains',
-        'choices',
         'single_backstroke_delete',
         'max_selected_options',
+        'placeholder_text',
+        'no_results_text',
     ]
 
     wrapper_attrs = {}
@@ -67,17 +62,51 @@ factory.defaults['chosen.format'] = 'block'
 factory.defaults['chosen.class'] = 'chosen'
 
 # TODO : docs
-factory.defaults['chosen.new_values'] = None;
-factory.defaults['chosen.click_test_action'] = None;
-factory.defaults['chosen.activate_action'] = None;
-factory.defaults['chosen.mouse_on_container'] = None;
-factory.defaults['chosen.results_showing'] = None;
-factory.defaults['chosen.result_highlighted'] = None;
-factory.defaults['chosen.result_single_selected'] = None;
+factory.defaults['chosen.new_values'] = False;
+factory.doc['props']['chosen.'] = \
+"""Allow adding new values. [True|False]
+"""
+
 factory.defaults['chosen.allow_single_deselect'] = None;
+factory.doc['props']['chosen.allow_single_deselect'] = \
+"""Allow deselection of single elements.
+"""
+
 factory.defaults['chosen.disable_search_threshold'] = None;
+factory.doc['props']['chosen.disable_search_threshold'] = \
+"""Disable the threshold, when the search popup opens.
+"""
+
 factory.defaults['chosen.disable_search'] = None;
+factory.doc['props']['chosen.disable_search'] = \
+"""Disable search at all.
+"""
+
 factory.defaults['chosen.search_contains'] = None;
-factory.defaults['chosen.choices'] = None;
+factory.doc['props']['chosen.search_contains'] = \
+"""Search also for substrings. Allowed values [True|False|None]. When using
+None or just not setting this value, the default of the Javascript widget is
+used.
+"""
+
 factory.defaults['chosen.single_backstroke_delete'] = None;
+factory.doc['props']['chosen.single_backstroke_delete'] = \
+"""A single backstroke deletes the selected option.
+"""
+
 factory.defaults['chosen.max_selected_options'] = None;
+factory.doc['props']['chosen.max_selected_options'] = \
+"""Maximum number of selected options.
+"""
+
+factory.defaults['chosen.placeholder_text'] = None;
+factory.doc['props']['chosen.placeholder_text'] = \
+"""Placeholder text.
+"""
+
+factory.defaults['chosen.no_results_text'] = None;
+factory.doc['props']['chosen.no_results_text'] = \
+"""Text for no results.
+"""
+
+
