@@ -4,7 +4,7 @@
  * Optional: bdajax
  */
 
-if (typeof(window['yafowil']) == "undefined") yafowil = {};
+if (typeof(window.yafowil) == "undefined") yafowil = {};
 
 (function($) {
 
@@ -13,7 +13,7 @@ if (typeof(window['yafowil']) == "undefined") yafowil = {};
         yafowil.chosen.binder();
 
         // add after ajax binding if bdajax present
-        if (typeof(window['bdajax']) != "undefined") {
+        if (typeof(window.bdajax) != "undefined") {
             $.extend(bdajax.binders, {
                 chosen_binder: yafowil.chosen.binder
             });
