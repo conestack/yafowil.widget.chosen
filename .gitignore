@@ -1,10 +1,9 @@
+BAK*
 *#*
 *~
 .*
 !.gitignore
-
 *.pyc
-
 bin
 develop-eggs
 devsrc
@@ -13,4 +12,4 @@ eggs
 parts
 src/packages
 var
-src/yafowil.widget.multiselect.egg-info/
+*.egg-info
