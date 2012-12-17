@@ -28,18 +28,23 @@ if (typeof(window.yafowil) == "undefined") yafowil = {};
 
                 $('select.chosen', context).each(function(event) {
 
-                    var id = $(this).attr('id');
-                    var element = $('#' + id);
+                    var extra_keys = ['new_values'];
+                    var elem = $(this);
+                    var options = elem.data();
 
-                    var option_el = $(this).closest('div.chosen-edit-wrapper');
-                    var options = option_el.data();
+                    function make_options_extra(options, extra_keys) {
+                        // cleanup api options object and move out extra options
+                        var options_extra = {};
+                        for (i=0;i<extra_keys.length;i++) {
+                            key = extra_keys[i];
+                            options_extra[key] = options[key];
+                            delete options[key];
+                        }
+                        return options_extra;
+                    }
+                    options_extra = make_options_extra(options, extra_keys);
 
-                    // cleanup api options object and move out extra options
-                    var options_extra = {};
-                    options_extra.new_values = options.new_values;
-                    delete options.new_values;
-
-                    element.chosen(options);
+                    elem.chosen(options);
 
                     if (options_extra.new_values===true) {
                         // TODO: do something like $(option_el).on('change', '.search-field', function ...
@@ -58,7 +63,7 @@ if (typeof(window.yafowil) == "undefined") yafowil = {};
                             sel.trigger('liszt:updated');
 
                             // TODO: doesn't work
-                            // focus search-field
+                           // focus search-field
                             //tryout1
                             //ele.focus();
                             //tryout2

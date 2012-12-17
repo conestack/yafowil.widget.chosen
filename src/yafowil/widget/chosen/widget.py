@@ -9,43 +9,31 @@ from yafowil.common import (
 )
 from yafowil.utils import (
     managedprops,
-    attr_value
+    data_attrs_helper
 )
 
 
-@managedprops('search_contains', 'new_values')
-def chosen_edit_wrapper_renderer(widget, data):
-    # add options
-    chosen_options = [
-        'new_values',
-        'allow_single_deselect',
-        'disable_search_threshold',
-        'disable_search',
-        'search_contains',
-        'single_backstroke_delete',
-        'max_selected_options',
-        'placeholder_text',
-        'no_results_text',
-    ]
+chosen_options = [
+    'new_values',
+    'allow_single_deselect',
+    'disable_search_threshold',
+    'disable_search',
+    'search_contains',
+    'single_backstroke_delete',
+    'max_selected_options',
+    'placeholder_text',
+    'no_results_text',
+]
 
-    wrapper_attrs = {}
-    for key in chosen_options:
-        val = attr_value(key, widget, data)
-        if val is None: continue
-        if val is True: val = 'true' # js-ify
-        if val is False: val = 'false' # js-ify
-        wrapper_attrs['data-%s' % key] = val
-
-    wrapper_attrs['class'] = 'chosen-edit-wrapper'
-
-    # return element (data.rendered) wrapped with chosen_edit_wrapper_renderer
-    return data.tag('div', data.rendered, **wrapper_attrs)
-
+@managedprops(*chosen_options)
+def chosen_edit_renderer(widget, data):
+    custom_attrs = data_attrs_helper(widget, data, chosen_options)
+    return select_edit_renderer(widget, data, **custom_attrs)
 
 factory.register(
     'chosen',
     extractors=[select_extractor, generic_required_extractor],
-    edit_renderers=[select_edit_renderer, chosen_edit_wrapper_renderer],
+    edit_renderers=[chosen_edit_renderer],
     display_renderers=[select_display_renderer])
 
 
