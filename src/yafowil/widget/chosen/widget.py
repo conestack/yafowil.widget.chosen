@@ -50,9 +50,11 @@ factory.defaults['chosen.format'] = 'block'
 factory.defaults['chosen.class'] = 'chosen'
 
 # TODO : docs
-factory.defaults['chosen.new_values'] = False;
-factory.doc['props']['chosen.'] = \
-"""Allow adding new values. [True|False]
+factory.defaults['chosen.new_values'] = None;
+factory.doc['props']['chosen.new_values'] = \
+"""Allow adding new values.
+For: yafowil js integration.
+Values: [True|False|None (default)].
 """
 
 factory.defaults['chosen.allow_single_deselect'] = None;
