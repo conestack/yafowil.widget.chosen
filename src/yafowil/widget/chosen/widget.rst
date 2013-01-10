@@ -45,7 +45,9 @@ Display renderer::
     >>> widget = factory('chosen',
     ...                  'multi',
     ...                  value=['foo', 'bar'],
-    ...                  props={'vocabulary': [('foo', 'Foo'), ('bar', 'Bar')]},
+    ...                  props={
+    ...                      'vocabulary': [('foo', 'Foo'), ('bar', 'Bar')],
+    ...                      'multivalued': True},
     ...                  mode='display')
     >>> widget()
     u'<ul class="display-chosen" 
