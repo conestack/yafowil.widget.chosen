@@ -7,6 +7,7 @@ root = this
 class AbstractChosen
 
   constructor: (@form_field, @options={}) ->
+    return unless AbstractChosen.browser_is_supported()
     @is_multiple = @form_field.multiple
     this.set_default_text()
     this.set_default_values()
@@ -31,7 +32,6 @@ class AbstractChosen
     @disable_search = @options.disable_search || false
     @enable_split_word_search = if @options.enable_split_word_search? then @options.enable_split_word_search else true
     @search_contains = @options.search_contains || false
-    @choices = 0
     @single_backstroke_delete = @options.single_backstroke_delete || false
     @max_selected_options = @options.max_selected_options || Infinity
     @inherit_select_classes = @options.inherit_select_classes || false
@@ -40,11 +40,11 @@ class AbstractChosen
     if @form_field.getAttribute("data-placeholder")
       @default_text = @form_field.getAttribute("data-placeholder")
     else if @is_multiple
-      @default_text = @options.placeholder_text_multiple || @options.placeholder_text || "Select Some Options"
+      @default_text = @options.placeholder_text_multiple || @options.placeholder_text || AbstractChosen.default_multiple_text
     else
-      @default_text = @options.placeholder_text_single || @options.placeholder_text || "Select an Option"
+      @default_text = @options.placeholder_text_single || @options.placeholder_text || AbstractChosen.default_single_text
 
-    @results_none_found = @form_field.getAttribute("data-no_results_text") || @options.no_results_text || "No results match"
+    @results_none_found = @form_field.getAttribute("data-no_results_text") || @options.no_results_text || AbstractChosen.default_no_result_text
 
   mouse_enter: -> @mouse_on_container = true
   mouse_leave: -> @mouse_on_container = false
@@ -94,13 +94,26 @@ class AbstractChosen
     else
       this.results_show()
 
+  choices_count: ->
+    return @selected_option_count if @selected_option_count?
+
+    @selected_option_count = 0
+    for option in @form_field.options
+      @selected_option_count += 1 if option.selected
+    
+    return @selected_option_count
+
+  choices_click: (evt) ->
+    evt.preventDefault()
+    this.results_show() unless @results_showing
+
   keyup_checker: (evt) ->
     stroke = evt.which ? evt.keyCode
     this.search_field_scale()
 
     switch stroke
       when 8
-        if @is_multiple and @backstroke_length < 1 and @choices > 0
+        if @is_multiple and @backstroke_length < 1 and this.choices_count() > 0
           this.keydown_backstroke()
         else if not @pending_backstroke
           this.result_clear_highlight()
@@ -124,5 +137,20 @@ class AbstractChosen
     chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     rand = Math.floor(Math.random() * chars.length)
     newchar = chars.substring rand, rand+1
+
+  container_width: ->
+    return if @options.width? then @options.width else "#{@form_field.offsetWidth}px"
+
+  # class methods and variables ============================================================ 
+
+  @browser_is_supported: ->
+    if window.navigator.appName == "Microsoft Internet Explorer"
+      return null isnt document.documentMode >= 8
+    return true
+
+  @default_multiple_text: "Select Some Options"
+  @default_single_text: "Select an Option"
+  @default_no_result_text: "No results match"
+
 
 root.AbstractChosen = AbstractChosen
