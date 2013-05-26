@@ -28,7 +28,7 @@ chosen_options = [
 @managedprops(*chosen_options)
 def chosen_edit_renderer(widget, data):
     custom_attrs = data_attrs_helper(widget, data, chosen_options)
-    return select_edit_renderer(widget, data, **custom_attrs)
+    return select_edit_renderer(widget, data, custom_attrs=custom_attrs)
 
 factory.register(
     'chosen',
