@@ -1,8 +1,8 @@
 History
 =======
 
-1.0dev (unreleased)
--------------------
+1.0dev
+------
 
 - For data-attributes, don't use wrapper element but define them on the field
   tag directly.
