@@ -63,7 +63,7 @@ if (typeof(window.yafowil) == "undefined") yafowil = {};
                             sel.trigger('liszt:updated');
 
                             // TODO: doesn't work
-                           // focus search-field
+                            // focus search-field
                             //tryout1
                             //ele.focus();
                             //tryout2

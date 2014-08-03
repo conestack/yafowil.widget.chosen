@@ -19,8 +19,7 @@ HarvestHQ Chosen widget in single selection mode.
         'required': 'Selection is required',
         'vocabulary': vocab,
         'multivalued': False,
-        })
-
+    })
 """
 
 DOC_CHOSEN_MULTI = """
@@ -33,8 +32,7 @@ HarvestHQ Chosen widget in multi selection mode.
         'required': 'Selection is required',
         'vocabulary': vocab,
         'multivalued': True,
-        })
-
+    })
 """
 
 DOC_CHOSEN_MULTI_2 = """
@@ -51,12 +49,10 @@ This one can be used as an autocomplete widget.
         'multivalued': True,
         'search_contains': True,
         'new_values': True,
-        })
-
+    })
 """
 
 def get_example():
-
     vocab = sorted((u'Weißburgunder', u'Welschriesling',
                     u'Sauvingnon Blanc', u'Sämling', u'Scheurebe',
                     u'Traminer', u'Morrilon', u'Muskateller'))
@@ -68,7 +64,7 @@ def get_example():
         'required': 'Selection is required',
         'vocabulary': vocab,
         'multivalued': False,
-        })
+    })
 
     # multiple selection
     chosen_multi = factory(u'fieldset', name='yafowil_chosen_multi')
@@ -77,7 +73,7 @@ def get_example():
         'required': 'Selection is required',
         'vocabulary': vocab,
         'multivalued': True,
-        })
+    })
 
     # multiple selection, search substrings, allow new values
     chosen_multi2 = factory(u'fieldset', name='yafowil_chosen_multi2')
@@ -88,15 +84,18 @@ def get_example():
         'multivalued': True,
         'search_contains': True,
         'new_values': True,
-        })
+    })
 
-    return [{'widget': chosen_single,
-             'doc': DOC_CHOSEN_SINGLE,
-             'title': 'Single Selection'},
-            {'widget': chosen_multi,
-             'doc': DOC_CHOSEN_MULTI,
-             'title': 'Multi Selection'},
-            {'widget': chosen_multi2,
-             'doc': DOC_CHOSEN_MULTI_2,
-             'title': 'Multi Selection, New Values, Search Substrings'},
-           ]
+    return [{
+        'widget': chosen_single,
+        'doc': DOC_CHOSEN_SINGLE,
+        'title': 'Single Selection',
+    }, {
+        'widget': chosen_multi,
+        'doc': DOC_CHOSEN_MULTI,
+        'title': 'Multi Selection',
+    }, {
+        'widget': chosen_multi2,
+        'doc': DOC_CHOSEN_MULTI_2,
+        'title': 'Multi Selection, New Values, Search Substrings',
+    }]
