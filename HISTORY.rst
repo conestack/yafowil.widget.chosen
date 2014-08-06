@@ -1,6 +1,16 @@
 History
 =======
 
+1.1 (unreleased)
+----------------
+
+- Upgrade to Chosen 1.1.
+  [rnix]
+
+- Add Bootstrap 3.2 compatible styles
+  [rnix]
+
+
 1.0
 ---
 
