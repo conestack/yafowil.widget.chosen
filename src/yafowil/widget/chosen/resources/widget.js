@@ -35,7 +35,7 @@ if (typeof(window.yafowil) == "undefined") yafowil = {};
                     function make_options_extra(options, extra_keys) {
                         // cleanup api options object and move out extra options
                         var options_extra = {};
-                        for (i=0;i<extra_keys.length;i++) {
+                        for (i = 0; i < extra_keys.length; i++) {
                             key = extra_keys[i];
                             options_extra[key] = options[key];
                             delete options[key];
@@ -50,7 +50,7 @@ if (typeof(window.yafowil) == "undefined") yafowil = {};
                         // TODO: do something like $(option_el).on('change', '.search-field', function ...
                         //       to allow more than one chosen instance on one
                         //       page
-                        $(document).on('change','.search-field input',function(e){
+                        $(document).on('change', '.search-field input', function(e) {
                             // allow new values
                             // see http://harvesthq.github.com/chosen/
                             // http://stackoverflow.com/questions/7385246/allow-new-values-with-chosen-js-multiple-select
@@ -61,7 +61,6 @@ if (typeof(window.yafowil) == "undefined") yafowil = {};
                             sel = ele.closest('div.controls').find('select.chosen'); // TODO: can't this be simpler? getting "this" context from surrounding environment?
                             sel.append('<option selected="selected">' + ele.val() + '</option>');
                             sel.trigger('liszt:updated');
-
                             // TODO: doesn't work
                             // focus search-field
                             //tryout1
@@ -71,12 +70,9 @@ if (typeof(window.yafowil) == "undefined") yafowil = {};
                             //sel.closest('div.controls').find('.czn-container .search-field input').focus();
                         });
                     }
-
                 });
-
             }
         }
     });
-
 
 })(jQuery);
