@@ -29,3 +29,5 @@ Contributors
 ============
 
 - Johannes Raggam <johannes [at] raggam [dot] co [dot] at>
+
+- Robert Niederreiter <rnix [at] squarewave [dot] at>
