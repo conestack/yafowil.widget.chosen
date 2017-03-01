@@ -2,7 +2,7 @@
 History
 =======
 
-1.2 (unreleased)
+1.2 (2017-03-01)
 ----------------
 
 - Use ``yafowil.utils.entry_point`` decorator.
