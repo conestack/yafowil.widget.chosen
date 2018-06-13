@@ -35,7 +35,7 @@ bootstrap_css = [{
 
 @entry_point(order=10)
 def register():
-    import widget
+    from yafowil.widget.chosen import widget
     factory.register_theme('default', 'yafowil.widget.chosen',
                            resourcedir, js=js, css=default_css)
     factory.register_theme('bootstrap', 'yafowil.widget.chosen',
