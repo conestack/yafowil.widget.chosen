@@ -28,6 +28,8 @@ TODO
 Contributors
 ============
 
-- Johannes Raggam <johannes [at] raggam [dot] co [dot] at>
+- Johannes Raggam
 
-- Robert Niederreiter <rnix [at] squarewave [dot] at>
+- Robert Niederreiter
+
+- Georg Bernhard
