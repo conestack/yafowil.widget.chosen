@@ -3,11 +3,18 @@ from setuptools import setup
 import os
 
 
+def read_file(name):
+    with open(os.path.join(os.path.dirname(__file__), name)) as f:
+        return f.read()
+
+
 version = '1.4.dev0'
 shortdesc = 'Chosen select/autocomplete widget for YAFOWIL'
-longdesc = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
-longdesc += open(os.path.join(os.path.dirname(__file__), 'HISTORY.rst')).read()
-longdesc += open(os.path.join(os.path.dirname(__file__), 'LICENSE.rst')).read()
+longdesc = '\n\n'.join([read_file(name) for name in [
+    'README.rst',
+    'CHANGES.rst',
+    'LICENSE.rst'
+]])
 tests_require = ['yafowil[test]']
 
 
@@ -33,7 +40,7 @@ setup(
     url=u'https://github.com/bluedynamics/yafowil.widget.chosen',
     license='Simplified BSD',
     packages=find_packages('src'),
-    package_dir = {'': 'src'},
+    package_dir={'': 'src'},
     namespace_packages=['yafowil', 'yafowil.widget'],
     include_package_data=True,
     zip_safe=False,
@@ -42,7 +49,7 @@ setup(
         'yafowil>2.1.99',
     ],
     tests_require=tests_require,
-    extras_require = dict(
+    extras_require=dict(
         test=tests_require,
     ),
     test_suite="yafowil.widget.chosen.tests",
@@ -50,4 +57,5 @@ setup(
     [yafowil.plugin]
     register = yafowil.widget.chosen:register
     example = yafowil.widget.chosen.example:get_example
-    """)
+    """
+)

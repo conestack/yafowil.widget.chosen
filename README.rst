@@ -1,6 +1,3 @@
-yafowil.widget.chosen
-=====================
-
 This is the chosen widget for `yafowil <http://pypi.python.org/pypi/yafowil>`_,
 based on the `chosen https://github.com/harvesthq/chosen`_ from the `Harvest
 timetracker project http://www.getharvest.com/`_.
@@ -24,6 +21,7 @@ TODO
 - One or Two TODO's spread over in source code (widget.js).
 - Documentation.
 - Tests.
+
 
 Contributors
 ============

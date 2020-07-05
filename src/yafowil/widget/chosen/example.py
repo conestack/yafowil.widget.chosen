@@ -52,6 +52,7 @@ This one can be used as an autocomplete widget.
     })
 """
 
+
 def get_example():
     vocab = sorted((u'Weißburgunder', u'Welschriesling',
                     u'Sauvingnon Blanc', u'Sämling', u'Scheurebe',
