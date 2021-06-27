@@ -39,7 +39,7 @@ factory.register(
 
 factory.doc['blueprint']['chosen'] = """\
 Add-on blueprint `yafowil.widget.chosen
-<http://github.com/bluedynamics/yafowil.widget.chosen/>`_ .
+<http://github.com/conestack/yafowil.widget.chosen/>`_ .
 """
 
 factory.defaults['chosen.multivalued'] = False
