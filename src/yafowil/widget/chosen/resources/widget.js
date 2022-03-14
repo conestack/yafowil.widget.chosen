@@ -1,4 +1,4 @@
-(function (exports, $) {
+var yafowil_chosen = (function (exports, $) {
     'use strict';
 
     class ChosenWidget {
@@ -65,4 +65,3 @@
     return exports;
 
 })({}, jQuery);
-//# sourceMappingURL=widget.js.map
