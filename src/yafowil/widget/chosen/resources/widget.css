@@ -1,0 +1,5 @@
+.chosen-container .chosen-results li.highlighted {
+  background-color: var(--yafowil-accent-color, #428bca)!important;
+  background-image: none;
+  color: var(--yafowil-accent-font-color, #fff)!important;
+}
