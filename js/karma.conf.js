@@ -19,6 +19,10 @@ module.exports = function(config) {
         }, {
             pattern: '../tests/test_*.js',
             type: 'module'
+        }, {
+            pattern: '../../src/yafowil/widget/chosen/resources/chosen/chosen.jquery.js',
+            type: 'module',
+            included: true
         }],
         browsers: [
             'ChromeHeadless'
