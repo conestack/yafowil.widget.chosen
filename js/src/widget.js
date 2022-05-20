@@ -9,6 +9,7 @@ export class ChosenWidget {
     }
 
     constructor(elem) {
+        elem.data('yafowil-chosen', this);
         this.elem = elem;
         let opts = elem.data();
         elem.chosen(opts);
