@@ -8,6 +8,7 @@ var yafowil_chosen = (function (exports, $) {
             });
         }
         constructor(elem) {
+            elem.data('yafowil-chosen', this);
             this.elem = elem;
             let opts = elem.data();
             elem.chosen(opts);
@@ -46,6 +47,8 @@ var yafowil_chosen = (function (exports, $) {
     $(function() {
         if (window.ts !== undefined) {
             ts.ajax.register(ChosenWidget.initialize, true);
+        } else if (window.bdajax !== undefined) {
+            bdajax.register(ChosenWidget.initialize, true);
         } else {
             ChosenWidget.initialize();
         }
@@ -56,9 +59,7 @@ var yafowil_chosen = (function (exports, $) {
     Object.defineProperty(exports, '__esModule', { value: true });
 
 
-    if (window.yafowil === undefined) {
-        window.yafowil = {};
-    }
+    window.yafowil = window.yafowil || {};
     window.yafowil.chosen = exports;
 
 
