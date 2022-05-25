@@ -14,7 +14,10 @@ choses_resources_dir = os.path.join(resources_dir, 'chosen')
 
 # webresource ################################################################
 
-scripts = wr.ResourceGroup(name='yafowil-chosen-scripts')
+scripts = wr.ResourceGroup(
+    name='yafowil-chosen-scripts',
+    path='yafowil.widget.chosen'
+)
 scripts.add(wr.ScriptResource(
     name='chosen-js',
     depends='jquery-js',
@@ -56,7 +59,10 @@ js = [{
 
 # webresource ################################################################
 
-default_styles = wr.ResourceGroup(name='yafowil-chosen-styles')
+default_styles = wr.ResourceGroup(
+    name='yafowil-chosen-styles',
+    path='yafowil.widget.chosen'
+)
 default_styles.add(wr.StyleResource(
     name='chosen-css',
     directory=choses_resources_dir,
@@ -84,7 +90,10 @@ default_css = [{
 
 # webresource ################################################################
 
-bootstrap_styles = wr.ResourceGroup(name='yafowil-chosen-styles')
+bootstrap_styles = wr.ResourceGroup(
+    name='yafowil-chosen-styles',
+    path='yafowil.widget.chosen'
+)
 bootstrap_styles.add(wr.StyleResource(
     name='chosen-css',
     directory=choses_resources_dir,
