@@ -14,7 +14,7 @@ choses_resources_dir = os.path.join(resources_dir, 'chosen')
 
 # webresource ################################################################
 
-scripts = wr.ResourceGroup(name='scripts')
+scripts = wr.ResourceGroup(name='yafowil-chosen-scripts')
 scripts.add(wr.ScriptResource(
     name='chosen-js',
     depends='jquery-js',
@@ -56,7 +56,7 @@ js = [{
 
 # webresource ################################################################
 
-default_styles = wr.ResourceGroup(name='styles')
+default_styles = wr.ResourceGroup(name='yafowil-chosen-styles')
 default_styles.add(wr.StyleResource(
     name='chosen-css',
     directory=choses_resources_dir,
@@ -64,10 +64,6 @@ default_styles.add(wr.StyleResource(
     compressed='chosen.min.js'
 ))
 default_styles.add(common_styles)
-
-default_resources = wr.ResourceGroup(name='chosen-resources')
-default_resources.add(scripts)
-default_resources.add(default_styles)
 
 # B/C resources ##############################################################
 
@@ -88,17 +84,13 @@ default_css = [{
 
 # webresource ################################################################
 
-bootstrap_styles = wr.ResourceGroup(name='styles')
+bootstrap_styles = wr.ResourceGroup(name='yafowil-chosen-styles')
 bootstrap_styles.add(wr.StyleResource(
     name='chosen-css',
     directory=choses_resources_dir,
     resource='chosen-bootstrap.css'
 ))
-bootstrap_styles.add(bootstrap_styles)
-
-bootstrap_resources = wr.ResourceGroup(name='chosen-resources')
-bootstrap_resources.add(scripts)
-bootstrap_resources.add(bootstrap_styles)
+bootstrap_styles.add(common_styles)
 
 # B/C resources ##############################################################
 
@@ -124,10 +116,23 @@ def register():
     # Default
     factory.register_theme(
         'default', 'yafowil.widget.chosen', resources_dir,
-        js=js, css=default_css, resources=default_resources
+        js=js, css=default_css
     )
+    factory.register_scripts('default', 'yafowil.widget.chosen', scripts)
+    factory.register_styles('default', 'yafowil.widget.chosen', default_styles)
+
     # Bootstrap
     factory.register_theme(
-        'bootstrap', 'yafowil.widget.chosen', resources_dir,
-        js=js, css=bootstrap_css, resources=bootstrap_resources
+        ['bootstrap', 'bootstrap3'], 'yafowil.widget.chosen', resources_dir,
+        js=js, css=bootstrap_css
+    )
+    factory.register_scripts(
+        ['bootstrap', 'bootstrap3'],
+        'yafowil.widget.chosen',
+        scripts
+    )
+    factory.register_styles(
+        ['bootstrap', 'bootstrap3'],
+        'yafowil.widget.chosen',
+        bootstrap_styles
     )
