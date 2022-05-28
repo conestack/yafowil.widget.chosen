@@ -5,8 +5,7 @@ import webresource as wr
 
 
 resources_dir = os.path.join(os.path.dirname(__file__), 'resources')
-choses_resources_dir = os.path.join(resources_dir, 'chosen')
-
+chosen_resources_dir = os.path.join(resources_dir, 'chosen')
 
 ##############################################################################
 # Common
@@ -14,29 +13,25 @@ choses_resources_dir = os.path.join(resources_dir, 'chosen')
 
 # webresource ################################################################
 
-scripts = wr.ResourceGroup(
-    name='yafowil-chosen-scripts',
-    path='yafowil.widget.chosen'
-)
-scripts.add(wr.ScriptResource(
+common_scripts = wr.ResourceGroup(name='yafowil-chosen-scripts')
+common_scripts.add(wr.ScriptResource(
     name='chosen-js',
     depends='jquery-js',
-    directory=choses_resources_dir,
+    directory=chosen_resources_dir,
+    path='yafowil-chosen/chosen',
     resource='chosen.jquery.js',
     compressed='chosen.jquery.min.js'
 ))
-scripts.add(wr.ScriptResource(
+common_scripts.add(wr.ScriptResource(
     name='yafowil-chosen-js',
     depends='chosen-js',
-    directory=resources_dir,
     resource='widget.js',
     compressed='widget.min.js'
 ))
 
-common_styles = wr.StyleResource(
+chosen_css = wr.StyleResource(
     name='yafowil-chosen-css',
     depends='chosen-css',
-    directory=resources_dir,
     resource='widget.css'
 )
 
@@ -59,17 +54,19 @@ js = [{
 
 # webresource ################################################################
 
-default_styles = wr.ResourceGroup(
-    name='yafowil-chosen-styles',
-    path='yafowil.widget.chosen'
+default_resources = wr.ResourceGroup(
+    name='yafowil-chosen-resources',
+    directory=resources_dir,
+    path='yafowil-chosen'
 )
-default_styles.add(wr.StyleResource(
+default_resources.add(common_scripts)
+default_resources.add(wr.StyleResource(
     name='chosen-css',
-    directory=choses_resources_dir,
+    directory=chosen_resources_dir,
     resource='chosen.css',
-    compressed='chosen.min.js'
+    compressed='chosen.min.css'
 ))
-default_styles.add(common_styles)
+default_resources.add(chosen_css)
 
 # B/C resources ##############################################################
 
@@ -90,16 +87,18 @@ default_css = [{
 
 # webresource ################################################################
 
-bootstrap_styles = wr.ResourceGroup(
-    name='yafowil-chosen-styles',
-    path='yafowil.widget.chosen'
+bootstrap_resources = wr.ResourceGroup(
+    name='yafowil-chosen-resources',
+    directory=resources_dir,
+    path='yafowil-chosen'
 )
-bootstrap_styles.add(wr.StyleResource(
+bootstrap_resources.add(common_scripts)
+bootstrap_resources.add(wr.StyleResource(
     name='chosen-css',
-    directory=choses_resources_dir,
+    directory=chosen_resources_dir,
     resource='chosen-bootstrap.css'
 ))
-bootstrap_styles.add(common_styles)
+bootstrap_resources.add(chosen_css)
 
 # B/C resources ##############################################################
 
@@ -122,26 +121,28 @@ bootstrap_css = [{
 def register():
     from yafowil.widget.chosen import widget  # noqa
 
+    widget_name = 'yafowil.widget.chosen'
+
     # Default
     factory.register_theme(
-        'default', 'yafowil.widget.chosen', resources_dir,
-        js=js, css=default_css
+        'default',
+        widget_name,
+        resources_dir,
+        js=js,
+        css=default_css
     )
-    factory.register_scripts('default', 'yafowil.widget.chosen', scripts)
-    factory.register_styles('default', 'yafowil.widget.chosen', default_styles)
+    factory.register_resources('default', widget_name, default_resources)
 
     # Bootstrap
     factory.register_theme(
-        ['bootstrap', 'bootstrap3'], 'yafowil.widget.chosen', resources_dir,
-        js=js, css=bootstrap_css
-    )
-    factory.register_scripts(
         ['bootstrap', 'bootstrap3'],
-        'yafowil.widget.chosen',
-        scripts
+        widget_name,
+        resources_dir,
+        js=js,
+        css=bootstrap_css
     )
-    factory.register_styles(
+    factory.register_resources(
         ['bootstrap', 'bootstrap3'],
-        'yafowil.widget.chosen',
-        bootstrap_styles
+        widget_name,
+        bootstrap_resources
     )
