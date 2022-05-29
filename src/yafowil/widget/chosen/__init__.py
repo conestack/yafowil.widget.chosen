@@ -63,6 +63,7 @@ default_resources.add(common_scripts)
 default_resources.add(wr.StyleResource(
     name='chosen-css',
     directory=chosen_resources_dir,
+    path='yafowil-chosen/chosen',
     resource='chosen.css',
     compressed='chosen.min.css'
 ))
@@ -96,6 +97,7 @@ bootstrap_resources.add(common_scripts)
 bootstrap_resources.add(wr.StyleResource(
     name='chosen-css',
     directory=chosen_resources_dir,
+    path='yafowil-chosen/chosen',
     resource='chosen-bootstrap.css'
 ))
 bootstrap_resources.add(chosen_css)
