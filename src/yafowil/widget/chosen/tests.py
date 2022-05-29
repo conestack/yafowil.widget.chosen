@@ -27,7 +27,7 @@ class TestChosenWidget(YafowilTestCase):
                 'required': True,
                 'vocabulary': [('foo', 'Foo'), ('bar', 'Bar')],
             })
-        self.check_output("""
+        self.checkOutput("""
         <select class="chosen" id="input-CHOSEN" name="CHOSEN"
                 required="required">
           <option id="input-CHOSEN-foo" value="foo">Foo</option>
@@ -43,7 +43,7 @@ class TestChosenWidget(YafowilTestCase):
                 'vocabulary': [('foo', 'Foo'), ('bar', 'Bar')],
                 'multivalued': True
             })
-        self.check_output("""
+        self.checkOutput("""
         <div>
           <input id="exists-CHOSEN" name="CHOSEN-exists" type="hidden"
                  value="exists"/>
@@ -67,7 +67,7 @@ class TestChosenWidget(YafowilTestCase):
                 'multivalued': True
             },
             mode='display')
-        self.check_output("""
+        self.checkOutput("""
         <ul class="display-chosen" id="display-CHOSEN">
           <li>Foo</li>
           <li>Bar</li>
