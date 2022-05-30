@@ -118,6 +118,7 @@ class TestChosenWidget(YafowilTestCase):
         factory.theme = 'default'
         resources = factory.get_resources('yafowil.widget.chosen')
         self.assertTrue(resources.directory.endswith(np('/chosen/resources')))
+        self.assertEqual(resources.name, 'yafowil.widget.chosen')
         self.assertEqual(resources.path, 'yafowil-chosen')
 
         scripts = resources.scripts
@@ -153,6 +154,7 @@ class TestChosenWidget(YafowilTestCase):
         factory.theme = 'bootstrap3'
         resources = factory.get_resources('yafowil.widget.chosen')
         self.assertTrue(resources.directory.endswith(np('/chosen/resources')))
+        self.assertEqual(resources.name, 'yafowil.widget.chosen')
         self.assertEqual(resources.path, 'yafowil-chosen')
 
         scripts = resources.scripts
