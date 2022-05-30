@@ -4,20 +4,25 @@ from yafowil.base import factory
 from yafowil.compat import IS_PY2
 from yafowil.tests import fxml
 from yafowil.tests import YafowilTestCase
+import os
 import unittest
-import yafowil.loader  # noqa
 
 
 if not IS_PY2:
     from importlib import reload
 
 
+def np(path):
+    return path.replace('/', os.path.sep)
+
+
 class TestChosenWidget(YafowilTestCase):
 
     def setUp(self):
         super(TestChosenWidget, self).setUp()
-        from yafowil.widget.chosen import widget
-        reload(widget)
+        from yafowil.widget import chosen
+        reload(chosen.widget)
+        chosen.register()
 
     def test_edit_renderer(self):
         widget = factory(
@@ -107,6 +112,77 @@ class TestChosenWidget(YafowilTestCase):
         self.assertEqual(data.value, UNSET)
         self.assertEqual(data.extracted, '1')
         self.assertEqual(data.errors, [])
+
+    def test_resources(self):
+        factory.theme = 'default'
+        resources = factory.get_resources('yafowil.widget.chosen')
+        self.assertTrue(resources.directory.endswith(np('/chosen/resources')))
+        self.assertEqual(resources.path, 'yafowil-chosen')
+
+        scripts = resources.scripts
+        self.assertEqual(len(scripts), 2)
+
+        self.assertTrue(
+            scripts[0].directory.endswith(np('/chosen/resources/chosen'))
+        )
+        self.assertEqual(scripts[0].path, 'yafowil-chosen/chosen')
+        self.assertEqual(scripts[0].file_name, 'chosen.jquery.min.js')
+        self.assertTrue(os.path.exists(scripts[0].file_path))
+
+        self.assertTrue(scripts[1].directory.endswith(np('/chosen/resources')))
+        self.assertEqual(scripts[1].path, 'yafowil-chosen')
+        self.assertEqual(scripts[1].file_name, 'widget.min.js')
+        self.assertTrue(os.path.exists(scripts[1].file_path))
+
+        styles = resources.styles
+        self.assertEqual(len(styles), 2)
+
+        self.assertTrue(
+            styles[0].directory.endswith(np('/chosen/resources/chosen'))
+        )
+        self.assertEqual(styles[0].path, 'yafowil-chosen/chosen')
+        self.assertEqual(styles[0].file_name, 'chosen.min.css')
+        self.assertTrue(os.path.exists(styles[0].file_path))
+
+        self.assertTrue(styles[1].directory.endswith(np('/chosen/resources')))
+        self.assertEqual(styles[1].path, 'yafowil-chosen')
+        self.assertEqual(styles[1].file_name, 'widget.css')
+        self.assertTrue(os.path.exists(styles[1].file_path))
+
+        factory.theme = 'bootstrap3'
+        resources = factory.get_resources('yafowil.widget.chosen')
+        self.assertTrue(resources.directory.endswith(np('/chosen/resources')))
+        self.assertEqual(resources.path, 'yafowil-chosen')
+
+        scripts = resources.scripts
+        self.assertEqual(len(scripts), 2)
+
+        self.assertTrue(
+            scripts[0].directory.endswith(np('/chosen/resources/chosen'))
+        )
+        self.assertEqual(scripts[0].path, 'yafowil-chosen/chosen')
+        self.assertEqual(scripts[0].file_name, 'chosen.jquery.min.js')
+        self.assertTrue(os.path.exists(scripts[0].file_path))
+
+        self.assertTrue(scripts[1].directory.endswith(np('/chosen/resources')))
+        self.assertEqual(scripts[1].path, 'yafowil-chosen')
+        self.assertEqual(scripts[1].file_name, 'widget.min.js')
+        self.assertTrue(os.path.exists(scripts[1].file_path))
+
+        styles = resources.styles
+        self.assertEqual(len(styles), 2)
+
+        self.assertTrue(
+            styles[0].directory.endswith(np('/chosen/resources/chosen'))
+        )
+        self.assertEqual(styles[0].path, 'yafowil-chosen/chosen')
+        self.assertEqual(styles[0].file_name, 'chosen-bootstrap.css')
+        self.assertTrue(os.path.exists(styles[0].file_path))
+
+        self.assertTrue(styles[1].directory.endswith(np('/chosen/resources')))
+        self.assertEqual(styles[1].path, 'yafowil-chosen')
+        self.assertEqual(styles[1].file_name, 'widget.css')
+        self.assertTrue(os.path.exists(styles[1].file_path))
 
 
 if __name__ == '__main__':
