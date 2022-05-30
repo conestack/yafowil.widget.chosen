@@ -21,7 +21,8 @@ class TestChosenWidget(YafowilTestCase):
     def setUp(self):
         super(TestChosenWidget, self).setUp()
         from yafowil.widget import chosen
-        reload(chosen.widget)
+        from yafowil.widget.chosen import widget
+        reload(widget)
         chosen.register()
 
     def test_edit_renderer(self):
