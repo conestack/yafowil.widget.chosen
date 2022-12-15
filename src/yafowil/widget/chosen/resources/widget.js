@@ -4,6 +4,9 @@ var yafowil_chosen = (function (exports, $) {
     class ChosenWidget {
         static initialize(context) {
             $('select.chosen', context).each(function (event) {
+                if ($(this).attr('id').includes('TEMPLATE')) {
+                    return;
+                }
                 new ChosenWidget($(this));
             });
         }
@@ -43,6 +46,15 @@ var yafowil_chosen = (function (exports, $) {
             }
         }
     }
+    function chosen_on_array_add(inst, context) {
+        ChosenWidget.initialize(context, true);
+    }
+    $(function() {
+        if (yafowil_array === undefined) {
+            return;
+        }
+        yafowil_array.on_array_event('on_add', chosen_on_array_add);
+    });
 
     $(function() {
         if (window.ts !== undefined) {
