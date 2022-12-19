@@ -50,10 +50,10 @@ var yafowil_chosen = (function (exports, $) {
         ChosenWidget.initialize(context, true);
     }
     $(function() {
-        if (yafowil_array === undefined) {
+        if (window.yafowil_array === undefined) {
             return;
         }
-        yafowil_array.on_array_event('on_add', chosen_on_array_add);
+        window.yafowil_array.on_array_event('on_add', chosen_on_array_add);
     });
 
     $(function() {
