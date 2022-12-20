@@ -8,6 +8,9 @@ Changes
   functions to enable usage in ``yafowil.widget.array``.
   [lenadax]
 
+- Prevent initialize of widget if part of array template.
+  [lenadax]
+
 - Rewrite JavaScript using ES6.
   [rnix]
 
