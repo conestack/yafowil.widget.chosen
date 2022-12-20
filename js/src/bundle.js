@@ -1,6 +1,7 @@
 import $ from 'jquery';
 
 import {ChosenWidget} from './widget.js';
+import {register_array_subscribers} from './widget.js';
 
 export * from './widget.js';
 
@@ -12,4 +13,5 @@ $(function() {
     } else {
         ChosenWidget.initialize();
     }
+    register_array_subscribers();
 });

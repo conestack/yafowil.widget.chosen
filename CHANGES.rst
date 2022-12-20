@@ -4,8 +4,8 @@ Changes
 2.0 (unreleased)
 ----------------
 
-- Extend JS by ``chosen_on_array_add`` function to enable usage in
-  ``yafowil.widget.array``.
+- Extend JS by ``chosen_on_array_add`` and ``register_array_subscribers``
+  functions to enable usage in ``yafowil.widget.array``.
   [lenadax]
 
 - Rewrite JavaScript using ES6.
