@@ -4,7 +4,7 @@ var yafowil_chosen = (function (exports, $) {
     class ChosenWidget {
         static initialize(context) {
             $('select.chosen', context).each(function (event) {
-                if ($(this).attr('id').includes('TEMPLATE')) {
+                if ($(this).parents('.arraytemplate').length) {
                     return;
                 }
                 new ChosenWidget($(this));
