@@ -1,78 +1,83 @@
-/*
- * yafowil chosen widget
- *
- * Optional: bdajax
- */
+var yafowil_chosen = (function (exports, $) {
+    'use strict';
 
-if (typeof(window.yafowil) == "undefined") yafowil = {};
-
-(function($) {
-
-    $(document).ready(function() {
-        // initial binding
-        yafowil.chosen.binder();
-
-        // add after ajax binding if bdajax present
-        if (typeof(window.bdajax) != "undefined") {
-            $.extend(bdajax.binders, {
-                chosen_binder: yafowil.chosen.binder
+    class ChosenWidget {
+        static initialize(context) {
+            $('select.chosen', context).each(function (event) {
+                if (window.yafowil_array !== undefined &&
+                    window.yafowil_array.inside_template($(this))) {
+                    return;
+                }
+                new ChosenWidget($(this));
             });
         }
-    });
-
-    $.extend(yafowil, {
-
-        chosen: {
-
-            binder: function(context) {
-
-                $('select.chosen', context).each(function(event) {
-
-                    var extra_keys = ['new_values'];
-                    var elem = $(this);
-                    var options = elem.data();
-
-                    function make_options_extra(options, extra_keys) {
-                        // cleanup api options object and move out extra options
-                        var options_extra = {};
-                        for (i = 0; i < extra_keys.length; i++) {
-                            key = extra_keys[i];
-                            options_extra[key] = options[key];
-                            delete options[key];
-                        }
-                        return options_extra;
-                    }
-                    options_extra = make_options_extra(options, extra_keys);
-
-                    elem.chosen(options);
-
-                    if (options_extra.new_values===true) {
-                        // TODO: do something like $(option_el).on('change', '.search-field', function ...
-                        //       to allow more than one chosen instance on one
-                        //       page
-                        $(document).on('change', '.search-field input', function(e) {
-                            // allow new values
-                            // see http://harvesthq.github.com/chosen/
-                            // http://stackoverflow.com/questions/7385246/allow-new-values-with-chosen-js-multiple-select
-                            //
-                            // TODO: try/test to bind also on keyup/enter
-                            e.preventDefault();
-                            ele = $(e.target);
-                            sel = ele.closest('div.controls').find('select.chosen'); // TODO: can't this be simpler? getting "this" context from surrounding environment?
-                            sel.append('<option selected="selected">' + ele.val() + '</option>');
-                            sel.trigger('liszt:updated');
-                            // TODO: doesn't work
-                            // focus search-field
-                            //tryout1
-                            //ele.focus();
-                            //tryout2
-                            // rebuilt - so have to find search field again.
-                            //sel.closest('div.controls').find('.czn-container .search-field input').focus();
-                        });
-                    }
-                });
+        constructor(elem) {
+            elem.data('yafowil-chosen', this);
+            this.elem = elem;
+            let opts = elem.data();
+            elem.chosen(opts);
+            if (opts.new_values) {
+                let input = $('.search-field input', elem.parent());
+                input.on('change', this.change_handle.bind(this));
+                input.on('keyup', this.keyup_handle.bind(this));
             }
         }
+        change_handle(evt) {
+            evt.preventDefault();
+            let val = $(evt.currentTarget).val();
+            if (!val) {
+                return;
+            }
+            let ignore = false;
+            $('option', this.elem).each(function() {
+                if (this.value === val) {
+                    ignore = true;
+                }
+            });
+            if (ignore) {
+                return;
+            }
+            this.elem.append(`<option selected="selected">${val}</option>`);
+            this.elem.trigger('chosen:updated');
+        }
+        keyup_handle(evt) {
+            let code = evt.keyCode || evt.which;
+            if (code == 13) {
+                this.change_handle(evt);
+            }
+        }
+    }
+    function chosen_on_array_add(inst, context) {
+        ChosenWidget.initialize(context, true);
+    }
+    function register_array_subscribers() {
+        if (window.yafowil_array === undefined) {
+            return;
+        }
+        window.yafowil_array.on_array_event('on_add', chosen_on_array_add);
+    }
+
+    $(function() {
+        if (window.ts !== undefined) {
+            ts.ajax.register(ChosenWidget.initialize, true);
+        } else if (window.bdajax !== undefined) {
+            bdajax.register(ChosenWidget.initialize, true);
+        } else {
+            ChosenWidget.initialize();
+        }
+        register_array_subscribers();
     });
 
-})(jQuery);
+    exports.ChosenWidget = ChosenWidget;
+    exports.register_array_subscribers = register_array_subscribers;
+
+    Object.defineProperty(exports, '__esModule', { value: true });
+
+
+    window.yafowil = window.yafowil || {};
+    window.yafowil.chosen = exports;
+
+
+    return exports;
+
+})({}, jQuery);

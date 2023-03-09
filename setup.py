@@ -8,14 +8,13 @@ def read_file(name):
         return f.read()
 
 
-version = '1.4.dev0'
+version = '2.0.dev0'
 shortdesc = 'Chosen select/autocomplete widget for YAFOWIL'
 longdesc = '\n\n'.join([read_file(name) for name in [
     'README.rst',
     'CHANGES.rst',
     'LICENSE.rst'
 ]])
-tests_require = ['yafowil[test]']
 
 
 setup(
@@ -48,10 +47,14 @@ setup(
         'setuptools',
         'yafowil>2.1.99',
     ],
-    tests_require=tests_require,
-    extras_require=dict(
-        test=tests_require,
-    ),
+    tests_require=[
+        'lxml',
+        'zope.testrunner'
+    ],
+    extras_require=dict(test=[
+        'lxml',
+        'zope.testrunner'
+    ]),
     test_suite="yafowil.widget.chosen.tests",
     entry_points="""
     [yafowil.plugin]
