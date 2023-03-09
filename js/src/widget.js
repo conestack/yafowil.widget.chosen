@@ -4,7 +4,8 @@ export class ChosenWidget {
 
     static initialize(context) {
         $('select.chosen', context).each(function (event) {
-            if ($(this).parents('.arraytemplate').length) {
+            if (window.yafowil_array !== undefined &&
+                window.yafowil_array.inside_template($(this))) {
                 return;
             }
             new ChosenWidget($(this));
