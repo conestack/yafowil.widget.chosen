@@ -4,6 +4,10 @@ export class ChosenWidget {
 
     static initialize(context) {
         $('select.chosen', context).each(function (event) {
+            if (window.yafowil_array !== undefined &&
+                window.yafowil_array.inside_template($(this))) {
+                return;
+            }
             new ChosenWidget($(this));
         });
     }
@@ -45,4 +49,19 @@ export class ChosenWidget {
             this.change_handle(evt);
         }
     }
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// yafowil.widget.array integration
+//////////////////////////////////////////////////////////////////////////////
+
+function chosen_on_array_add(inst, context) {
+    ChosenWidget.initialize(context, true);
+}
+
+export function register_array_subscribers() {
+    if (window.yafowil_array === undefined) {
+        return;
+    }
+    window.yafowil_array.on_array_event('on_add', chosen_on_array_add);
 }
