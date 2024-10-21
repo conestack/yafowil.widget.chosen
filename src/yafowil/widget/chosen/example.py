@@ -1,6 +1,27 @@
 # -*- coding: utf-8 -*-
 from yafowil.base import factory
 
+DOC_CHOSEN_DEPRECATION = """
+.. raw:: html
+
+    <div class="alert alert-info">
+        <i class="bi bi-info-circle-fill"></i>
+        This widget has a newer version available:
+        <a class="link-offset-3"
+           href="../++widget++yafowil.widget.select2/index.html">
+            yafowil.widget.select2
+        </a>
+    </div>
+    <div class="alert alert-warning">
+        <i class="bi bi-exclamation-triangle-fill"></i>
+        <strong>Deprecation Notice:</strong>
+        yafowil.widget.chosen is 
+        <strong>
+            deprecated
+        </strong>
+        and will no longer receive support or further development.
+    </div>
+"""
 
 DOC_CHOSEN_SINGLE = """
 chosen
@@ -89,7 +110,8 @@ def get_example():
 
     return [{
         'widget': chosen_single,
-        'doc': DOC_CHOSEN_SINGLE,
+        'doc': DOC_CHOSEN_SINGLE if factory.theme != 'bootstrap5'
+               else DOC_CHOSEN_DEPRECATION + DOC_CHOSEN_SINGLE,
         'title': 'Single Selection',
     }, {
         'widget': chosen_multi,
