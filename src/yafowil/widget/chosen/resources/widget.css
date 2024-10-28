@@ -1,5 +1,1 @@
-.chosen-container .chosen-results li.highlighted {
-  background-color: var(--yafowil-accent-color, #0d6efd)!important;
-  background-image: none;
-  color: var(--yafowil-accent-font-color, #fff)!important;
-}
+.chosen-container .chosen-results li.highlighted{background-color:var(--yafowil-accent-color,#0d6efd)!important;background-image:none;color:var(--yafowil-accent-font-color,#fff)!important}
