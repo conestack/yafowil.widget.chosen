@@ -1,3 +1,5 @@
+import $ from 'jquery';
+import 'chosen'; // Necessary for global access in tests; do not remove.
 import {ChosenWidget} from "../src/widget.js";
 import {register_array_subscribers} from "../src/widget.js";
 
@@ -7,6 +9,9 @@ QUnit.module('chosen', hooks => {
         on_add: []
     };
 
+    hooks.before(() => {
+        
+    });
     hooks.beforeEach(() => {
         container = $('<div class="container" />').appendTo('body');
         el = $('<select class="chosen" />');
