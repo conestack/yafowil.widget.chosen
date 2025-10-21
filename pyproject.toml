@@ -1,6 +1,6 @@
 [build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
 name = "yafowil.widget.chosen"
@@ -33,15 +33,6 @@ test = [
 [project.entry-points."yafowil.plugin"]
 register = "yafowil.widget.chosen:register"
 example = "yafowil.widget.chosen.example:get_example"
-
-[tool.setuptools.packages.find]
-where = ["src"]
-
-[tool.setuptools]
-zip-safe = false
-
-[tool.setuptools.package-dir]
-"" = "src"
 
 [tool.zest-releaser]
 create-wheel = true
