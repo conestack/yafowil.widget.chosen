@@ -3,6 +3,8 @@
 *.pyo
 /.coverage
 /.mxmake/
+/build
+/constraints-mxdev.txt
 /coverage/
 /dist/
 /htmlcov/
@@ -14,5 +16,5 @@
 /py3/
 /pypy3/
 /requirements-mxdev.txt
+/sources/
 /venv/
-/build
