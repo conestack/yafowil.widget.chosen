@@ -4,6 +4,9 @@ Changes
 2.0.0 (unreleased)
 ------------------
 
+- Refactor package layout to use ``pyproject.toml`` and implicit namespace packages.
+  [rnix]
+
 - Extend JS by ``chosen_on_array_add`` and ``register_array_subscribers``
   functions to enable usage in ``yafowil.widget.array``.
   [lenadax]
