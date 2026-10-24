@@ -28,12 +28,9 @@ def chosen_edit_renderer(widget, data):
 
 factory.register(
     'chosen',
-    extractors=[
-        select_extractor,
-        generic_required_extractor
-    ],
+    extractors=[select_extractor, generic_required_extractor],
     edit_renderers=[chosen_edit_renderer],
-    display_renderers=[select_display_renderer]
+    display_renderers=[select_display_renderer],
 )
 
 

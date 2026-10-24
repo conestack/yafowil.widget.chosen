@@ -12,11 +12,11 @@ def np(path):
 
 
 class TestChosenWidget(YafowilTestCase):
-
     def setUp(self):
         super(TestChosenWidget, self).setUp()
         from yafowil.widget import chosen
         from yafowil.widget.chosen import widget
+
         reload(widget)
         chosen.register()
 
@@ -27,24 +27,27 @@ class TestChosenWidget(YafowilTestCase):
             props={
                 'required': True,
                 'vocabulary': [('foo', 'Foo'), ('bar', 'Bar')],
-            })
-        self.checkOutput("""
+            },
+        )
+        self.checkOutput(
+            """
         <select class="chosen" id="input-CHOSEN" name="CHOSEN"
                 required="required">
           <option id="input-CHOSEN-foo" value="foo">Foo</option>
           <option id="input-CHOSEN-bar" value="bar">Bar</option>
         </select>
-        """, fxml(widget()))
+        """,
+            fxml(widget()),
+        )
 
         widget = factory(
             'chosen',
             name='CHOSEN',
             value=['foo'],
-            props={
-                'vocabulary': [('foo', 'Foo'), ('bar', 'Bar')],
-                'multivalued': True
-            })
-        self.checkOutput("""
+            props={'vocabulary': [('foo', 'Foo'), ('bar', 'Bar')], 'multivalued': True},
+        )
+        self.checkOutput(
+            """
         <div>
           <input id="exists-CHOSEN" name="CHOSEN-exists" type="hidden"
                  value="exists"/>
@@ -56,7 +59,9 @@ class TestChosenWidget(YafowilTestCase):
                     value="bar">Bar</option>
           </select>
         </div>
-        """, fxml('<div>{}</div>'.format(widget())))
+        """,
+            fxml(f'<div>{widget()}</div>'),
+        )
 
     def test_display_renderer(self):
         widget = factory(
@@ -65,42 +70,33 @@ class TestChosenWidget(YafowilTestCase):
             value=['foo', 'bar'],
             props={
                 'vocabulary': [('foo', 'Foo'), ('bar', 'Bar'), ('baz', 'Baz')],
-                'multivalued': True
+                'multivalued': True,
             },
-            mode='display')
-        self.checkOutput("""
+            mode='display',
+        )
+        self.checkOutput(
+            """
         <ul class="display-chosen" id="display-CHOSEN">
           <li>Foo</li>
           <li>Bar</li>
         </ul>
-        """, fxml(widget()))
+        """,
+            fxml(widget()),
+        )
 
-        widget = factory(
-            'chosen',
-            name='CHOSEN',
-            value='foo',
-            mode='display')
+        widget = factory('chosen', name='CHOSEN', value='foo', mode='display')
         self.assertEqual(
-            widget(),
-            '<div class="display-chosen" id="display-CHOSEN">foo</div>'
+            widget(), '<div class="display-chosen" id="display-CHOSEN">foo</div>'
         )
 
     def test_extraction(self):
-        widget = factory(
-            'chosen',
-            name='CHOSEN',
-            props={
-                'required': True
-            })
+        widget = factory('chosen', name='CHOSEN', props={'required': True})
         request = {'CHOSEN': ''}
         data = widget.extract(request)
         self.assertEqual(data.name, 'CHOSEN')
         self.assertEqual(data.value, UNSET)
         self.assertEqual(data.extracted, '')
-        self.assertEqual(
-            data.errors,
-            [ExtractionError('Mandatory field was empty')]
-        )
+        self.assertEqual(data.errors, [ExtractionError('Mandatory field was empty')])
 
         request = {'CHOSEN': '1'}
         data = widget.extract(request)
@@ -119,9 +115,7 @@ class TestChosenWidget(YafowilTestCase):
         scripts = resources.scripts
         self.assertEqual(len(scripts), 2)
 
-        self.assertTrue(
-            scripts[0].directory.endswith(np('/chosen/resources/chosen'))
-        )
+        self.assertTrue(scripts[0].directory.endswith(np('/chosen/resources/chosen')))
         self.assertEqual(scripts[0].path, 'yafowil-chosen/chosen')
         self.assertEqual(scripts[0].file_name, 'chosen.jquery.min.js')
         self.assertTrue(os.path.exists(scripts[0].file_path))
@@ -134,9 +128,7 @@ class TestChosenWidget(YafowilTestCase):
         styles = resources.styles
         self.assertEqual(len(styles), 2)
 
-        self.assertTrue(
-            styles[0].directory.endswith(np('/chosen/resources/chosen'))
-        )
+        self.assertTrue(styles[0].directory.endswith(np('/chosen/resources/chosen')))
         self.assertEqual(styles[0].path, 'yafowil-chosen/chosen')
         self.assertEqual(styles[0].file_name, 'chosen.min.css')
         self.assertTrue(os.path.exists(styles[0].file_path))
@@ -155,9 +147,7 @@ class TestChosenWidget(YafowilTestCase):
         scripts = resources.scripts
         self.assertEqual(len(scripts), 2)
 
-        self.assertTrue(
-            scripts[0].directory.endswith(np('/chosen/resources/chosen'))
-        )
+        self.assertTrue(scripts[0].directory.endswith(np('/chosen/resources/chosen')))
         self.assertEqual(scripts[0].path, 'yafowil-chosen/chosen')
         self.assertEqual(scripts[0].file_name, 'chosen.jquery.min.js')
         self.assertTrue(os.path.exists(scripts[0].file_path))
@@ -170,9 +160,7 @@ class TestChosenWidget(YafowilTestCase):
         styles = resources.styles
         self.assertEqual(len(styles), 2)
 
-        self.assertTrue(
-            styles[0].directory.endswith(np('/chosen/resources/chosen'))
-        )
+        self.assertTrue(styles[0].directory.endswith(np('/chosen/resources/chosen')))
         self.assertEqual(styles[0].path, 'yafowil-chosen/chosen')
         self.assertEqual(styles[0].file_name, 'chosen-bootstrap.css')
         self.assertTrue(os.path.exists(styles[0].file_path))
