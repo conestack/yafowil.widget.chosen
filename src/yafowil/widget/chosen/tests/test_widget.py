@@ -5,7 +5,6 @@ from yafowil.base import factory
 from yafowil.tests import fxml
 from yafowil.tests import YafowilTestCase
 import os
-import unittest
 
 
 def np(path):
@@ -182,7 +181,3 @@ class TestChosenWidget(YafowilTestCase):
         self.assertEqual(styles[1].path, 'yafowil-chosen')
         self.assertEqual(styles[1].file_name, 'widget.css')
         self.assertTrue(os.path.exists(styles[1].file_path))
-
-
-if __name__ == '__main__':
-    unittest.main()
