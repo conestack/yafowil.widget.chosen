@@ -4,6 +4,10 @@ Changes
 2.0.1 (unreleased)
 ------------------
 
+- Import the select renderers and extractor from ``yafowil.select``, they are
+  deprecated in ``yafowil.common``.
+  [rnix]
+
 - Modernise the code ruff flags as outdated: ``u''`` prefixes and ``.format()``
   over f-strings. Behaviour unchanged. ``super(Class, self)`` is kept, see
   ``cone.app``.
