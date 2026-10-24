@@ -3,9 +3,8 @@ var yafowil_chosen = (function (exports, $) {
 
     class ChosenWidget {
         static initialize(context) {
-            $('select.chosen', context).each(function (event) {
-                if (window.yafowil_array !== undefined &&
-                    window.yafowil_array.inside_template($(this))) {
+            $('select.chosen', context).each(function () {
+                if (window.yafowil_array?.inside_template($(this))) {
                     return;
                 }
                 new ChosenWidget($(this));
@@ -14,22 +13,22 @@ var yafowil_chosen = (function (exports, $) {
         constructor(elem) {
             elem.data('yafowil-chosen', this);
             this.elem = elem;
-            let opts = elem.data();
+            const opts = elem.data();
             elem.chosen(opts);
             if (opts.new_values) {
-                let input = $('.search-field input', elem.parent());
+                const input = $('.search-field input', elem.parent());
                 input.on('change', this.change_handle.bind(this));
                 input.on('keyup', this.keyup_handle.bind(this));
             }
         }
         change_handle(evt) {
             evt.preventDefault();
-            let val = $(evt.currentTarget).val();
+            const val = $(evt.currentTarget).val();
             if (!val) {
                 return;
             }
             let ignore = false;
-            $('option', this.elem).each(function() {
+            $('option', this.elem).each(function () {
                 if (this.value === val) {
                     ignore = true;
                 }
@@ -41,13 +40,13 @@ var yafowil_chosen = (function (exports, $) {
             this.elem.trigger('chosen:updated');
         }
         keyup_handle(evt) {
-            let code = evt.keyCode || evt.which;
-            if (code == 13) {
+            const code = evt.keyCode || evt.which;
+            if (code === 13) {
                 this.change_handle(evt);
             }
         }
     }
-    function chosen_on_array_add(inst, context) {
+    function chosen_on_array_add(_inst, context) {
         ChosenWidget.initialize(context, true);
     }
     function register_array_subscribers() {
@@ -57,7 +56,7 @@ var yafowil_chosen = (function (exports, $) {
         window.yafowil_array.on_array_event('on_add', chosen_on_array_add);
     }
 
-    $(function() {
+    $(() => {
         if (window.ts !== undefined) {
             ts.ajax.register(ChosenWidget.initialize, true);
         } else if (window.bdajax !== undefined) {

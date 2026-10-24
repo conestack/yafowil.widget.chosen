@@ -1,12 +1,9 @@
-
 import $ from 'jquery';
 
 export class ChosenWidget {
-
     static initialize(context) {
-        $('select.chosen', context).each(function (event) {
-            if (window.yafowil_array !== undefined &&
-                window.yafowil_array.inside_template($(this))) {
+        $('select.chosen', context).each(function () {
+            if (window.yafowil_array?.inside_template($(this))) {
                 return;
             }
             new ChosenWidget($(this));
@@ -16,10 +13,10 @@ export class ChosenWidget {
     constructor(elem) {
         elem.data('yafowil-chosen', this);
         this.elem = elem;
-        let opts = elem.data();
+        const opts = elem.data();
         elem.chosen(opts);
         if (opts.new_values) {
-            let input = $('.search-field input', elem.parent());
+            const input = $('.search-field input', elem.parent());
             input.on('change', this.change_handle.bind(this));
             input.on('keyup', this.keyup_handle.bind(this));
         }
@@ -27,12 +24,12 @@ export class ChosenWidget {
 
     change_handle(evt) {
         evt.preventDefault();
-        let val = $(evt.currentTarget).val();
+        const val = $(evt.currentTarget).val();
         if (!val) {
             return;
         }
         let ignore = false;
-        $('option', this.elem).each(function() {
+        $('option', this.elem).each(function () {
             if (this.value === val) {
                 ignore = true;
             }
@@ -45,8 +42,8 @@ export class ChosenWidget {
     }
 
     keyup_handle(evt) {
-        let code = evt.keyCode || evt.which;
-        if (code == 13) {
+        const code = evt.keyCode || evt.which;
+        if (code === 13) {
             this.change_handle(evt);
         }
     }
@@ -56,7 +53,7 @@ export class ChosenWidget {
 // yafowil.widget.array integration
 //////////////////////////////////////////////////////////////////////////////
 
-function chosen_on_array_add(inst, context) {
+function chosen_on_array_add(_inst, context) {
     ChosenWidget.initialize(context, true);
 }
 
