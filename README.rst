@@ -14,6 +14,12 @@
     :target: https://github.com/conestack/yafowil.widget.chosen/actions/workflows/test_js.yaml
     :alt: Test yafowil.widget.chosen JS
 
+.. warning::
+
+    This package is deprecated, use
+    `yafowil.widget.select2 <http://pypi.python.org/pypi/yafowil.widget.select2>`_
+    instead.
+
 This is the chosen widget for `yafowil <http://pypi.python.org/pypi/yafowil>`_,
 based on the `chosen <https://github.com/harvesthq/chosen>`_ from the `Harvest
 timetracker project <http://www.getharvest.com/>`_.

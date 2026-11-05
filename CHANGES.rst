@@ -1,10 +1,11 @@
 Changes
 =======
 
-2.0.2 (unreleased)
+2.1.0 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- This package is deprecated, use ``yafowil.widget.select2`` instead.
+  [rnix]
 
 
 2.0.1 (2026-10-31)
