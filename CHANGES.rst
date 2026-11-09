@@ -1,7 +1,7 @@
 Changes
 =======
 
-2.1.0 (unreleased)
+2.1.0 (2026-11-09)
 ------------------
 
 - This package is deprecated, use ``yafowil.widget.select2`` instead.
